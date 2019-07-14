@@ -11,9 +11,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationDidBecomeActive(_ application: UIApplication) {
         // 앱이 active가 되면 badge와 온 푸시들을 모두 Clear 합니다.
-        UIApplication.shared.applicationIconBadgeNumber = 1
-        UIApplication.shared.applicationIconBadgeNumber = 0
-        UIApplication.shared.cancelAllLocalNotifications()
+        clearPush()
     }
 }
 
@@ -43,6 +41,12 @@ extension AppDelegate {
     private checkPush(options: [UIApplication.LaunchOptionsKey: Any]?) {
         guard let payload = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? [AnyHashable: Any] else { return }
         processPayload(payload)
+    }
+    
+    private clearPush() {
+        UIApplication.shared.applicationIconBadgeNumber = 1
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        UIApplication.shared.cancelAllLocalNotifications()
     }
     
     private processPayload(_ payload: [AnyHashable: Any], background: Bool) {
