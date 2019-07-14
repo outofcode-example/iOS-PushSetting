@@ -38,18 +38,18 @@ extension AppDelegate {
         }
     }
     
-    private checkPush(options: [UIApplication.LaunchOptionsKey: Any]?) {
+    private func checkPush(options: [UIApplication.LaunchOptionsKey: Any]?) {
         guard let payload = launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] as? [AnyHashable: Any] else { return }
         processPayload(payload)
     }
     
-    private clearPush() {
+    private func clearPush() {
         UIApplication.shared.applicationIconBadgeNumber = 1
         UIApplication.shared.applicationIconBadgeNumber = 0
         UIApplication.shared.cancelAllLocalNotifications()
     }
     
-    private processPayload(_ payload: [AnyHashable: Any], background: Bool) {
+    private func processPayload(_ payload: [AnyHashable: Any], background: Bool) {
         // Push 처리
     }
 }
